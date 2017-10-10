@@ -4,8 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node ./backend/server.js",
+    "client-dev": "webpack-dev-server --port=4200",
+    "build": "webpack",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -21,8 +22,16 @@
     "@angular/platform-browser": "^4.2.4",
     "@angular/platform-browser-dynamic": "^4.2.4",
     "@angular/router": "^4.2.4",
+    "babel-loader": "^7.1.2",
+    "babel-core": "^6.25.0",
+    "babel-preset-es2016": "^6.24.1",    
     "core-js": "^2.4.1",
+    "express-api-response": "^0.4.0",
+    "json-loader": "^0.5.7",
+    "raw-loader": "^0.5.1",
     "rxjs": "^5.4.2",
+    "ts-loader": "^2.3.7",
+    "tslint-loader": "^3.5.3",
     "zone.js": "^0.8.14"
   },
   "devDependencies": {
@@ -44,6 +53,9 @@
     "protractor": "~5.1.2",
     "ts-node": "~3.2.0",
     "tslint": "~5.7.0",
-    "typescript": "~2.3.3"
+    "typescript": "~2.3.3",
+    "webpack": "^3.4.1",
+    "webpack-dev-server": "~2.4.5",
+    "webpack-livereload-plugin": "^0.11.0"
   }
 }

@@ -5,7 +5,7 @@
   },
   "apps": [
     {
-      "root": "src",
+      "root": "./frontend/src",
       "outDir": "dist",
       "assets": [
         "assets",
@@ -54,7 +54,12 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "scss",
+    "component": {
+      "spec": false
+    },
+    "service": {
+      "spec": false
+    }
   }
 }
