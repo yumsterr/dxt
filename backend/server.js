@@ -12,6 +12,9 @@ let app = express();
 // context.mongoStore = new MongoStore({
 //     mongooseConnection: mongooseConnection
 // });
+app.use('/dist', express.static(path.resolve(__dirname + '/../dist')));
+
+const viewRoutes = require('./routes/view/routes')(app);
 
 console.log(`app runs on port: ${port}`);
 console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
