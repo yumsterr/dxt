@@ -1,13 +1,28 @@
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatInputModule
 } from '@angular/material';
-// import 'hammerjs';
+import 'hammerjs';
 
 @NgModule({
+    imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule
+    ],
     exports: [
-        MatButtonModule
+        BrowserModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatIconModule,
+        MatInputModule
     ]
 })
 

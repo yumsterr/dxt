@@ -1,25 +1,29 @@
-/* You can add global styles to this file, and also import other style files */
-@import '~@angular/material/theming';
-// Plus imports for other components in your app.
+// /* You can add global styles to this file, and also import other style files */
+// @import '~@angular/material/theming';
+// // Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// Be sure that you only ever include this mixin once!
-@include mat-core();
+// // Include the common styles for Angular Material. We include this here so that you only
+// // have to load a single css file for Angular Material in your app.
+// // Be sure that you only ever include this mixin once!
+// @include mat-core();
 
-$primary: mat-palette($mat-green, A100);
-$accent:  mat-palette($mat-blue, 300, 500, 800);
-$warn:    mat-palette($mat-red, 600);
+// $primary: mat-palette(#4DD0E1, A100);
+// $accent:  mat-palette(#9575CD, 300, 500, 800);
+// $warn:    mat-palette(#EF5350, 600);
 
-// Create the theme object (a Sass map containing all of the palettes).
-$theme: mat-dark-theme($primary, $accent, $warn);
+// // Create the theme object (a Sass map containing all of the palettes).
+// $theme: mat-dark-theme($primary, $accent, $warn);
 
-// Include theme styles for core and each component used in your app.
-// Alternatively, you can import and @include the theme mixins for each component
-// that you are using.
-@include angular-material-theme($theme);
+// // Include theme styles for core and each component used in your app.
+// // Alternatively, you can import and @include the theme mixins for each component
+// // that you are using.
+// @include angular-material-theme($theme);
 
-.new-item{
-    font-size: 24px;
-    color: indigo;
+// .new-item{
+//     font-size: 24px;
+//     color: indigo;
+// }
+
+body{
+    background-color: red; 
 }
