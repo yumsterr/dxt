@@ -1,23 +1,47 @@
 const bodyParser = require('body-parser'),
-express = require('express'),
-// mongooseConnection = require('./db/dbConnect').connection,
-// MongoStore = require('connect-mongo')(session),
-path = require('path'),
-// mongoose = require('mongoose'),
-apiResponse = require('express-api-response'),
-port = 3030;
+    cookieParser = require('cookie-parser'),
+    express = require('express'),
+    session = require('express-session'),
+    mongoose = require('mongoose'),
+    mongooseConnection = require('./db').connection,
+    MongoStore = require('connect-mongo')(session),
+    path = require('path'),
+    passport = require('passport'),
+    apiResponse = require('express-api-response'),
+    config = require('./config'),
+    port = 3030;
 
 let app = express();
 
-// context.mongoStore = new MongoStore({
-//     mongooseConnection: mongooseConnection
-// });
+const store = new MongoStore({
+    mongooseConnection: mongooseConnection
+});
+
+app.use(session({
+    secret: config.session.secret,
+    resave: true,
+    saveUninitialized: true,
+    store: store
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use('/dist', express.static(path.resolve(__dirname + '/../dist')));
 
-const viewRoutes = require('./routes/view/routes')(app);
+app.use(bodyParser.json({
+    limit: '5mb'
+}));
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(cookieParser());
+
+require('./routes/view/routes')(app);
+require('./routes/api/routes')(app);
 
 console.log(`app runs on port: ${port}`);
-console.log(`NODE_ENV: ${process.env.NODE_ENV}`);
+console.log(`NODE_ENV: ${process.env.test}`);
 const server = app.listen(port);
 
 module.exports = app;
