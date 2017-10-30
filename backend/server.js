@@ -41,7 +41,6 @@ require('./routes/view/routes')(app);
 require('./routes/api/routes')(app);
 
 console.log(`app runs on port: ${port}`);
-console.log(`NODE_ENV: ${process.env.test}`);
 const server = app.listen(port);
 
 module.exports = app;
