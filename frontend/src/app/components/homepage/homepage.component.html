@@ -1,15 +1,19 @@
-<p>
-  homepage works!
-</p>
-
-<button mat-icon-button color="primary">
-  <mat-icon class="mat-24" aria-label="Example icon-button with a heart icon">favorite</mat-icon>
-</button>
-<button mat-raised-button color="accent">Accent</button>
-<div class="new-item">
-  asd
+<div class="homepage-container">
+    <app-menu></app-menu>
+    <div class="main-content">
+        <div class="index-form">
+            <h1>Welcome to amazing world!</h1>
+            <p class="text">
+                Do you want to
+            </p>
+            <div class="user-buttons">
+                <button mat-button>Log in</button>
+                <button mat-button>Sign in</button>
+            </div>
+            <p class="text">
+                or
+            </p>
+            <button mat-button>Stay anonymous</button>
+        </div>
+    </div>
 </div>
-
-<mat-form-field class="example-full-width">
-  <input matInput placeholder="First name">
-</mat-form-field>
