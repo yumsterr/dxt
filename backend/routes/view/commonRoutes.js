@@ -6,9 +6,9 @@ module.exports = function(app) {
 		injectData(req, res, {}, false);		
 	});
 
-	app.get('/test/', function(req, res, next) {
-		res.data = {message: 'WORKS!'};
-		res.err = null;
-		next();
-	}, apiResponse);
+	// app.get('/test/', function(req, res, next) {
+	// 	res.data = {message: 'WORKS!'};
+	// 	res.err = null;
+	// 	next();
+	// }, apiResponse);
 };
