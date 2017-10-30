@@ -9,7 +9,7 @@ module.exports = {
       env_production : {
         NODE_ENV: 'production'
       },
-      watch: [],
+      watch: ['backend'],
       watchOptions: {
         followSymlinks: true,
         usePolling: true

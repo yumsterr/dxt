@@ -18,7 +18,6 @@ import 'hammerjs';
     BrowserModule,
     AppRoutingModule,
     ImportModule,
-  
   ],
   providers: [],
   bootstrap: [AppComponent]

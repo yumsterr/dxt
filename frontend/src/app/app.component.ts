@@ -5,7 +5,6 @@ import { Component, ViewEncapsulation } from '@angular/core';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss', '../globalStyles/materialTheme.scss'],
   encapsulation: ViewEncapsulation.None
-  
 })
 export class AppComponent {
   title = 'Dixit';
