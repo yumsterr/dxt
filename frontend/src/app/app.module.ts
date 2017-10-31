@@ -11,6 +11,8 @@ import 'hammerjs';
 import { MenuComponent } from './components/menu/menu.component';
 import { HttpService } from './services/http.service';
 import { ToastrService } from './services/toastr.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastrConfig } from './config/toastr.config';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,11 @@ import { ToastrService } from './services/toastr.service';
   ],
   providers: [
     HttpService,
-    ToastrService
+    ToastrService,
+    {
+      provide: ToastOptions,
+      useClass: ToastrConfig
+    }
   ],
   bootstrap: [AppComponent]
 })
