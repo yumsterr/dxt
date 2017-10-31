@@ -9,6 +9,8 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import 'hammerjs';
 import { MenuComponent } from './components/menu/menu.component';
+import { HttpService } from './services/http.service';
+import { ToastrService } from './services/toastr.service';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,10 @@ import { MenuComponent } from './components/menu/menu.component';
     AppRoutingModule,
     ImportModule,
   ],
-  providers: [],
+  providers: [
+    HttpService,
+    ToastrService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
