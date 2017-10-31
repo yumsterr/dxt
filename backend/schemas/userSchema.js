@@ -3,17 +3,18 @@ const Schema = mongoose.Schema;
 const ObjectId = mongoose.Schema.Types.ObjectId;
 const bcrypt = require('bcrypt-nodejs');
 
-
 const User = new Schema({
 	firstName: String,
 	lastName: String,
 	email: {
 		type: String,
 		required: true,
-		lowercase: true
+		lowercase: true,
+		unique: true
 	},
 	password: {
-		type: String
+		type: String,
+		required: true
 	},
 	salt: {
 		type: String,
@@ -41,31 +42,43 @@ const User = new Schema({
 User.pre('save', function (next) {
 	const userData = this;
 	if (!userData.isModified('password')) return next();
-	bcrypt.genSalt(1012, (err, salt) => {
-		userData.salt = salt;
-		this.encryptPassword(this.password, (err, hash) => {
-			if (err) return next(err);
 
-			userData.password = hash;
-			next();
+	bcrypt.genSalt(1012)
+		.then(salt => {
+			userData.salt = salt;
+			this.encryptPassword(this.password)
+				.then(hash => {
+					userData.password = hash;
+					next();
+				})
+				.catch(err => {
+					next(err);
+				});
 		})
-	});
+		.catch(err => {
+			next(err);
+		});
 });
 
 User.pre('update', function (next) {
 	const fields = this._update.$set;
-
 	if (!fields || !fields.password) return next();
 
-	bcrypt.genSalt(1012, (err, salt) => {
-		fields.salt = salt;
-		bcrypt.hash(fields.password, fields.salt, null, (err, hash) => {
-			if (err) return next(err);
-
-			fields.password = hash;
-			next();
+	bcrypt.genSalt(1012)
+		.then(salt => {
+			fields.salt = salt;
+			this.encryptPassword(fields.password, fields.salt)
+				.then(hash => {
+					fields.password = hash;
+					next();
+				})
+				.catch(err => {
+					next(err);
+				});
+		})
+		.catch(err => {
+			next(err);
 		});
-	});
 });
 
 User.methods.checkPassword = function (password) {
@@ -73,15 +86,21 @@ User.methods.checkPassword = function (password) {
 		this.encryptPassword(password)
 			.then(hash => {
 				resolve(hash === this.password)
-            })
-            .catch(err => {
-                reject(err);
-            })
-	})
+			})
+			.catch(err => {
+				reject(err);
+			});
+	});
 };
 
-User.methods.encryptPassword = function (password, callback) {
-	return bcrypt.hash(password, this.salt);
+User.methods.encryptPassword = function (password, salt = this.salt) {
+	return new Promise((resolve, reject) => {
+		bcrypt.hash(password, salt, (err, hash) => {
+			if (err) return reject(err);
+
+			return resolve(hash);
+		});
+	})
 };
 
 User.methods.checkToken = function (token) {

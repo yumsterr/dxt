@@ -37,8 +37,8 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(cookieParser());
 
-require('./routes/view/routes')(app);
 require('./routes/api/routes')(app);
+require('./routes/view/routes')(app);
 
 console.log(`app runs on port: ${port}`);
 const server = app.listen(port);

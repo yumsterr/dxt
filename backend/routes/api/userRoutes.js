@@ -16,6 +16,18 @@ module.exports = function (app) {
 			})
 	}, apiResponse);
 
+	app.get(baseUrl, function (req, res, next) {
+		userRepository.get({})
+			.then(data => {
+				res.data = data;
+				next();
+			})
+			.catch(err => {
+				res.err = err;
+				next();
+			})
+	}, apiResponse);
+
 	app.get(baseUrl + ':id', function (req, res, next) {
 		userRepository.getById(req.params.id)
 			.then((data) => {
@@ -29,7 +41,15 @@ module.exports = function (app) {
 	}, apiResponse);
 
 	app.post(baseUrl, function (req, res, next) {
-		next();
+		userRepository.add(req.body)
+			.then(data => {
+				res.data = data;
+				next();
+			})
+			.catch(err => {
+				res.err = err;
+				next();
+			})
 	}, apiResponse);
 
 	app.put(baseUrl + ':id', function (req, res, next) {
