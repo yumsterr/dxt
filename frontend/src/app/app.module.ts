@@ -9,12 +9,14 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import 'hammerjs';
 import { MenuComponent } from './components/menu/menu.component';
+import { IndexFormComponent } from './components/homepage/index-form/index-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    MenuComponent
+    MenuComponent,
+    IndexFormComponent
   ],
   imports: [
     BrowserModule,
