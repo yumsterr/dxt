@@ -61,7 +61,7 @@ class Repository {
 		return query.exec();
 	}
 
-	makeObjectId(string) {
+	static makeObjectId(string) {
 		return ObjectId(string);
 	}
 }
