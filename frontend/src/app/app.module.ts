@@ -9,6 +9,10 @@ import { AppComponent } from './app.component';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import 'hammerjs';
 import { MenuComponent } from './components/menu/menu.component';
+import { HttpService } from './services/http.service';
+import { ToastrService } from './services/toastr.service';
+import { ToastOptions } from 'ng2-toastr';
+import { ToastrConfig } from './config/toastr.config';
 import { IndexFormComponent } from './components/homepage/index-form/index-form.component';
 
 @NgModule({
@@ -23,7 +27,14 @@ import { IndexFormComponent } from './components/homepage/index-form/index-form.
     AppRoutingModule,
     ImportModule,
   ],
-  providers: [],
+  providers: [
+    HttpService,
+    ToastrService,
+    {
+      provide: ToastOptions,
+      useClass: ToastrConfig
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

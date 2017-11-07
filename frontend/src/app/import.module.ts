@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastModule } from 'ng2-toastr/ng2-toastr';
 
 import {
     MatButtonModule,
@@ -15,7 +16,8 @@ import 'hammerjs';
         BrowserAnimationsModule,
         MatButtonModule,
         MatIconModule,
-        MatInputModule
+        MatInputModule,
+        ToastModule.forRoot()
     ],
     exports: [
         BrowserModule,

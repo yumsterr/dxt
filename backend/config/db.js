@@ -1,5 +1,5 @@
 module.exports = {
-	dbname: 'msfn',
+	dbname: 'dxt',
 	uri: `mongodb://${process.env.db_user}:${process.env.db_password}@${process.env.db_url}`,
 	mocked_db: false,
 	opts: {
