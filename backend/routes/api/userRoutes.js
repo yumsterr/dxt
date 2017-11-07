@@ -33,7 +33,7 @@ module.exports = function (app) {
 
 	app.post(baseUrl, async function (req, res, next) {
 		try {
-			res.data = await userRepository.add(req.body);;
+			res.data = await userRepository.add(req.body);
 		} catch (e) {
 			res.err = e;
 		}
@@ -43,11 +43,9 @@ module.exports = function (app) {
 	app.put(baseUrl + ':id', async function (req, res, next) {
 		try {
 			res.data = await userRepository.update(req.params.id, req.body);
-			console.log(res.data);
 		} catch (e) {
 			res.err = e;
 		}
-		console.log(res.data);
 		next();
 	}, apiResponse);
 

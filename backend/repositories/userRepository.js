@@ -30,8 +30,6 @@ class UserRepository extends Repository {
 					throw new Error('user with such email already exist');
 				}
 			}
-			console.log(id);
-			console.log(data);
     		return super.update(id, data);
 		} else {
     		throw new Error('user not found');
@@ -41,10 +39,19 @@ class UserRepository extends Repository {
 	async getByEmail(email) {
     	const users = await this.get({
 			filter: {
+				isRemoved: false,
 				email: email
 			}
 		});
     	return users.shift();
+	}
+
+	async deleteById(id) {
+    	const user = await this.getById(id);
+    	if (user) {
+			return super.deleteById(id);
+		}
+		throw new Error('user not found or already deleted');
 	}
 }
 
