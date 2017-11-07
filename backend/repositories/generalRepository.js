@@ -1,7 +1,11 @@
 const ObjectId = require('mongoose').Types.ObjectId;
 
 class Repository {
-	constructor() {}
+	constructor() {
+		if (this.constructor === Repository) {
+			throw new Error('Cant create repository instance');
+		}
+	}
 
 	add(data) {
 		const model = this.model;
@@ -20,7 +24,8 @@ class Repository {
 
 	getById(id) {
 		const query = this.model.findOne({
-			_id: id
+			_id: id,
+			isRemoved: false
 		});
 		return query.exec();
 	}
@@ -61,7 +66,7 @@ class Repository {
 		return query.exec();
 	}
 
-	makeObjectId(string) {
+	static makeObjectId(string) {
 		return ObjectId(string);
 	}
 }
