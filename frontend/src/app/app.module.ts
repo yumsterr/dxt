@@ -15,6 +15,7 @@ import {ToastOptions} from 'ng2-toastr';
 import {ToastrConfig} from './config/toastr.config';
 import {IndexFormComponent} from './components/homepage/index-form/index-form.component';
 import {GameService} from './services/game.service';
+import {SocketService} from './services/socket.service';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import {GameService} from './services/game.service';
             provide: ToastOptions,
             useClass: ToastrConfig
         },
-        GameService
+        GameService,
+        SocketService
     ],
     bootstrap: [AppComponent]
 

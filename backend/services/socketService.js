@@ -44,8 +44,6 @@ class SocketService {
         };
         this.users.push(newClient);
         // GameController.UserLogin(newClient);
-
-        console.log(this.users);
     };
 
     RemoveUser (socket) {

@@ -1,18 +1,25 @@
 import {Injectable} from '@angular/core';
 import * as io from 'socket.io-client';
+import {ToastrService} from './toastr.service';
 
 @Injectable()
 export class SocketService {
 
-    private _socket = io.connect('http://localhost:3060');
+    private _socket = io.connect('http://localhost:3030');
     private rooms: any[] = [];
 
-    constructor(private toast: ToasterService) {
+    constructor(private toast: ToastrService) {
         this._socket.on('connect', () => {
-            this.toast.showMessage('success', 'connected to server');
+            this.toast.show({
+                type: 'success',
+                header: 'connected to server'
+            });
         });
         this._socket.on('disconnect', () => {
-            this.toast.showMessage('error', 'server is DOWN');
+            this.toast.show({
+                type: 'error',
+                header: 'server is DOWN'
+            });
         });
     }
 
@@ -27,7 +34,9 @@ export class SocketService {
     }
 
     public joinRoom(roomName: string) {
-        if (this.rooms.indexOf(roomName) !== -1) { return; }
+        if (this.rooms.indexOf(roomName) !== -1) {
+            return;
+        }
         this.send('join_room', JSON.stringify({'room': roomName}));
         this.rooms.push(roomName);
     }
