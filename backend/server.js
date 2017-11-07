@@ -43,4 +43,8 @@ require('./routes/view/routes')(app);
 console.log(`app runs on port: ${port}`);
 const server = app.listen(port);
 
+
+global.io = require('socket.io')(server);
+const socketService = require('./services/socketService');
+
 module.exports = app;
