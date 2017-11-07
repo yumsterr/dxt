@@ -16,13 +16,15 @@ import {ToastrConfig} from './config/toastr.config';
 import {IndexFormComponent} from './components/homepage/index-form/index-form.component';
 import {GameService} from './services/game.service';
 import {SocketService} from './services/socket.service';
+import { GameTestComponent } from './components/game-test/game-test.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomepageComponent,
         MenuComponent,
-        IndexFormComponent
+        IndexFormComponent,
+        GameTestComponent
     ],
     imports: [
         BrowserModule,

@@ -5,6 +5,7 @@ class SocketService {
     constructor () {
         this.io = global.io;
         this.users = [];
+        this.onConnectHandlers = [];
 
         this.Init();
     }
@@ -43,14 +44,18 @@ class SocketService {
             socket: socket
         };
         this.users.push(newClient);
-        // GameController.UserLogin(newClient);
+        this.onConnectHandlers.forEach(callback => {
+            if (typeof callback === 'function') {
+                callback(newClient);
+            }
+        });
     };
 
     RemoveUser (socket) {
         this.users.splice(this.users.indexOf(socket), 1);
     };
 
-    addListener (event, callback) {
+    AddListener (event, callback) {
         if (this.socket) {
             this.socket.on(event, (data) => {
                 callback(data);
@@ -58,7 +63,7 @@ class SocketService {
         }
     };
 
-    addSocketListener (socket, event, callback) {
+    AddSocketListener (socket, event, callback) {
         socket.on(event, (data) => {
             callback(data);
         });
@@ -83,6 +88,12 @@ class SocketService {
     EmitTo (socket, event, data) {
         socket.emit(event, data);
     };
+
+    AddConnectHandler (callback) {
+        if (!this.onConnectHandlers.includes(callback) && typeof callback === 'function') {
+            this.onConnectHandlers.push(callback);
+        }
+    }
 }
 
 module.exports = new SocketService();
