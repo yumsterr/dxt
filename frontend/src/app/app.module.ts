@@ -13,12 +13,14 @@ import { HttpService } from './services/http.service';
 import { ToastrService } from './services/toastr.service';
 import { ToastOptions } from 'ng2-toastr';
 import { ToastrConfig } from './config/toastr.config';
+import { IndexFormComponent } from './components/homepage/index-form/index-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomepageComponent,
-    MenuComponent
+    MenuComponent,
+    IndexFormComponent
   ],
   imports: [
     BrowserModule,
