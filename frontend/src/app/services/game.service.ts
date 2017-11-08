@@ -5,10 +5,24 @@ import {SocketService} from './socket.service';
 export class GameService {
 
     constructor(public socketService: SocketService) {
+        this.initListeners();
     }
 
-    findGame() {
-        this.socketService.send('find_game');
+    initListeners() {
+        this.socketService.addListener('joinGame:res', data => {
+            console.log(data);
+        });
+        this.socketService.addListener('createGame:res', data => {
+            console.log(data);
+        });
+    }
+
+    joinGame(gameId) {
+        this.socketService.send('joinGame', gameId);
+    }
+
+    createGame() {
+        this.socketService.send('createGame');
     }
 
 }

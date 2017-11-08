@@ -1,5 +1,4 @@
 const cookie = require("cookie");
-// const GameController = require('./gameController');
 
 class SocketService {
     constructor () {
@@ -63,12 +62,6 @@ class SocketService {
         }
     };
 
-    AddSocketListener (socket, event, callback) {
-        socket.on(event, (data) => {
-            callback(data);
-        });
-    };
-
     Emit (event, data) {
         if (this.socket){
             this.socket.emit(event, data);
@@ -80,6 +73,16 @@ class SocketService {
             this.socket.broadcast(event, data);
         }
     };
+
+    AddSocketListener (socket, event, callback) {
+        socket.on(event, (data) => {
+            callback(data);
+        });
+    };
+
+    BroadcastTo (socket, event, data) {
+        socket.broadcast(event, data);
+    }
 
     BroadcastRoom (event, room, data) {
         this.io.sockets.in(room).emit(event, data);
