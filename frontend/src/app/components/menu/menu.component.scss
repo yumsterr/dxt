@@ -11,9 +11,9 @@
 	padding: 0;
 	z-index: 101;
 	box-sizing: border-box;
-	background: rgba(165, 144, 96, 0.45);
+	background: $bg-color;
 	box-shadow: 0 2px 6px 1px rgba(138, 126, 98, 0.14), inset 0 0 150px 50px rgba(255, 171, 0, 0.06);
-	border-radius: 3px;
+
 	.item {
 		margin: 0 30px;
 		color: $white;
@@ -21,7 +21,6 @@
         transition: all 0.3s ease-out;
         &:hover{
             color:rgb(65, 57, 33);
-
         }
 	}
 }

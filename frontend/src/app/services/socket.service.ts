@@ -23,7 +23,7 @@ export class SocketService {
         });
     }
 
-    public send(event: string, message: string) {
+    public send(event: string, message = '') {
         this._socket.emit(event, message);
     }
 
@@ -41,4 +41,7 @@ export class SocketService {
         this.rooms.push(roomName);
     }
 
+    public removeListener(event: string) {
+        this._socket.off(event);
+    }
 }
