@@ -46,5 +46,6 @@ const server = app.listen(port);
 
 global.io = require('socket.io')(server);
 const socketService = require('./services/socketService');
+const gameService = require('./services/gameService');
 
 module.exports = app;

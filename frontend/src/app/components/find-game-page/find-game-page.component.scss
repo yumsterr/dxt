@@ -1,0 +1,31 @@
+@import '../../../globalStyles/colors';
+@import '../../../globalStyles/sizes';
+
+.container {
+    width: 100%;
+    height: calc(100% - #{$header-height});
+
+    .info {
+        width: 100%;
+        height: 70%;
+        display: flex;
+
+        .games-list {
+            width: 50%;
+            height: 100%;
+            overflow: auto;
+        }
+        .game-details {
+            width: 50%;
+            height: 100%;
+        }
+    }
+
+    .controls {
+        height: 30%;
+    }
+}
+
+.block {
+    display: block;
+}

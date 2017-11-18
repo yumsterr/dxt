@@ -5,7 +5,12 @@ import {SocketService} from './services/socket.service';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss', '../globalStyles/materialTheme.scss', '../globalStyles/materialComponents.scss'],
+    styleUrls: [
+        './app.component.scss',
+        '../globalStyles/materialTheme.scss',
+        '../globalStyles/materialComponents.scss',
+        '../styles.scss'
+    ],
     encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {

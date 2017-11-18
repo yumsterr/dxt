@@ -1,0 +1,67 @@
+@import '../../../../globalStyles/colors';
+
+.game {
+    height: 80px;
+    padding: 10px 20px;
+    display: flex;
+    border: 1px solid grey;
+    border-radius: 10px;
+    align-items: flex-start;
+    max-width: 100%;
+    margin-bottom: 5px;
+    box-shadow: 0 0 2px 0 grey;
+    cursor: pointer;
+
+    .game-about {
+        flex-basis: 80%;
+        line-height: 20px;
+        width: 80%;
+        height: 100%;
+        align-items: flex-start;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+
+        .game-name {
+            width: 100%;
+            font-size: 24px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            padding: 8px 0;
+        }
+
+        .game-about-additional {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+
+            .game-host-name {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                padding-right: 10px;
+            }
+            .game-players-count {
+                white-space: nowrap;
+            }
+        }
+    }
+
+    .game-controls {
+        flex-basis: 20%;
+        width: 20%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+
+        .join-game,
+        .leave-game {
+            &-button {
+                border: 1px solid grey;
+            }
+        }
+    }
+}

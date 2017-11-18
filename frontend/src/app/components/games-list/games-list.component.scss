@@ -1,0 +1,15 @@
+@import '../../../globalStyles/colors';
+.container  {
+    padding: 5px;
+
+    .games-list {
+        padding: 5px;
+        height: 100%;
+        border-radius: 10px;
+        background: $bg-color;
+    }
+}
+
+.block {
+    display: block;
+}
