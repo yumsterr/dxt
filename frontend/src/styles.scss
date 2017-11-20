@@ -1,5 +1,13 @@
 @import '~perfect-scrollbar/css/perfect-scrollbar.css';
 
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background: rgba(165, 144, 96, 0.45);
+}
+
 .ps {
     position: relative;
     padding-right: 3px;

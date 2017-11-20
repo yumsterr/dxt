@@ -1,0 +1,11 @@
+<form class="container">
+    <div class="game_name_wrap">
+        <mat-input-container>
+            <input name="game_name" matInput placeholder="Game name" [(ngModel)]="gameName">
+        </mat-input-container>
+    </div>
+    <div class="buttons">
+        <button mat-button (click)="submit()">Ok</button>
+        <button mat-button (click)="close()">Cancel</button>
+    </div>
+</form>

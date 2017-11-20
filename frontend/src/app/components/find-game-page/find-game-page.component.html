@@ -2,9 +2,13 @@
 <div class="container">
     <div class="info">
         <div class="games-list" [perfectScrollbar]>
-            <app-games-list></app-games-list>
+            <app-games-list [games]="activeGames"></app-games-list>
         </div>
-        <div class="game-details">1</div>
+        <div class="controls">
+            <button mat-button class="button" (click)="createGame()">Create</button>
+            <button mat-button class="button" (click)="refresh()">Refresh</button>
+            <button mat-button class="button">Quick search</button>
+        </div>
     </div>
-    <div class="controls"></div>
+    <div class="game-details">1</div>
 </div>

@@ -4,26 +4,42 @@
 .container {
     width: 100%;
     height: calc(100% - #{$header-height});
+    display: flex;
 
     .info {
-        width: 100%;
-        height: 70%;
+        width: 50%;
+        height: 100%;
         display: flex;
+        flex-wrap: wrap;
+        border-right: 1px solid grey;
 
         .games-list {
-            width: 50%;
-            height: 100%;
+            width: 100%;
+            height: 90%;
             overflow: auto;
+            border-bottom: 1px solid grey;
         }
-        .game-details {
-            width: 50%;
-            height: 100%;
+
+        .controls {
+            width: 100%;
+            height: 10%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .button {
+                border: 1px solid grey;
+                padding: 10px 30px;
+            }
         }
     }
 
-    .controls {
-        height: 30%;
+    .game-details {
+        width: 50%;
+        height: 100%;
     }
+
+
 }
 
 .block {

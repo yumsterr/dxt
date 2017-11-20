@@ -19,6 +19,6 @@ export class GameTestComponent implements OnInit {
     }
 
     createGame() {
-        this.game.createGame();
+        this.game.createGame('123');
     }
 }
