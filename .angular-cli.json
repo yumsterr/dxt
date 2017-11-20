@@ -2,11 +2,11 @@
     "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
     "project": {
         "name": "dixit",
-        "ejected": true  
+        "ejected": true
     },
     "apps": [
         {
-            "root": "./frontend/src",
+            "root": "frontend/src",
             "outDir": "dist",
             "assets": [
                 "assets",
