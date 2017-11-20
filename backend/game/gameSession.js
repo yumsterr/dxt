@@ -1,14 +1,15 @@
 const crypto = require('crypto-js');
+const events = require('events');
 
-class GameSession {
-    constructor(host) {
+class GameSession extends events.EventEmitter {
+    constructor(host, name = 'Game') {
+        super();
         this.host = host;
+        this.name = name;
         this.active = false;
         this.disconnectTimeout = 60 * 1000;
         this._id = crypto.SHA256(Date.now() + this.host.sid).toString();
         this.players = [];
-
-        this.connectPlayer(host);
     }
 
     connectPlayer(player) {
@@ -25,15 +26,26 @@ class GameSession {
         }
     }
 
-    disconnectPlayer(player) {
+    initDisconnectPlayer(player) {
         player.inGame = false;
         player.disconnectTimeout = setTimeout(() => {
-            this.players.splice(this.players.indexOf(player), 1);
+            this.disconnectPlayer(player);
         }, this.disconnectTimeout);
+    }
+
+    disconnectPlayer(player) {
+        this.players.splice(this.players.indexOf(player), 1);
+        this.checkGameEmpty();
     }
 
     start() {
         this.active = true;
+    }
+
+    checkGameEmpty() {
+        if (!this.players.length) {
+            this.emit('destroy');
+        }
     }
 }
 
