@@ -1,0 +1,23 @@
+<div class="container" *ngIf="game">
+    <div class="game-heading">{{ game.name }}</div>
+    <div class="players">
+        <div class="players-heading">Players</div>
+        <div class="players-list_wrap" [perfectScrollbar]>
+            <div class="player-list">
+                <div class="player" *ngFor="let player of game.players">
+                    <div class="player-about" [class.host-icon]="player.sid === game.host.sid">
+                        <span class="player-name">{{ player.sid }}</span>
+                    </div>
+                    <div class="controls">
+                        <div class="make-coach"></div>
+                        <div class="kick">X</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="controls">
+        <button mat-button class="button" (click)="join()">Join</button>
+        <button mat-button class="button" (click)="leave()">Leave</button>
+    </div>
+</div>

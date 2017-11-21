@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {SocketService} from '../../services/socket.service';
 import {MatDialog} from '@angular/material';
 import {CreateGameDialogComponent} from './create-game-dialog/create-game-dialog.component';
 import {GameService} from '../../services/game.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-find-game-page',
@@ -12,15 +12,23 @@ import {GameService} from '../../services/game.service';
 export class FindGamePageComponent implements OnInit {
 
     public activeGames = [];
+    public detailGameId: string;
+    private parentUrl = '/find_game/';
 
     constructor(public dialog: MatDialog,
-                public gameService: GameService) {
+                public gameService: GameService,
+                private route: ActivatedRoute,
+                private router: Router) {
         this.gameService.getGames();
     }
 
     ngOnInit() {
         this.gameService.games.subscribe(games => {
             this.activeGames = games;
+            this.checkGames();
+        });
+        this.route.params.subscribe(params => {
+            this.detailGameId = params['game_id'];
         });
     }
 
@@ -42,6 +50,24 @@ export class FindGamePageComponent implements OnInit {
 
     refresh() {
         this.gameService.getGames();
+    }
+
+    checkGames() {
+        if (!this.detailGameId) {
+            return;
+        }
+
+        let gameFound = false;
+
+        this.activeGames.forEach(game => {
+            if (game._id === this.detailGameId) {
+                gameFound = true;
+            }
+        });
+
+        if (!gameFound) {
+            this.router.navigate([this.parentUrl]);
+        }
     }
 
 }

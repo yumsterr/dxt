@@ -7,6 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class GameListDetailComponent implements OnInit {
 
+    private parentUrl = '/find_game/';
+
     @Input() game: any = {};
 
     constructor() {

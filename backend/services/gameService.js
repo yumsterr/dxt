@@ -13,12 +13,14 @@ class GameService {
         const listeners = [
             'joinGame',
             'createGame',
-            'getGamesList'
+            'getGamesList',
+            'getGameDetails'
         ];
 
         listeners.forEach(method => {
             socketService.AddSocketListener(player.socket, method, (...params) => {
                 const result = this[method].apply(this, [player].concat(params));
+                console.log(result);
                 socketService.EmitTo(player.socket, method + ':success', result);
             })
         });
@@ -38,7 +40,7 @@ class GameService {
         this.joinGameObj(player, session);
     }
 
-    joinGameObj(player, game) {
+    static joinGameObj(player, game) {
         if (player.game) {
             player.game.disconnectPlayer(player);
         }
@@ -60,32 +62,39 @@ class GameService {
     }
 
     getGamesList() {
-        return this.normalizeGames(
-            this.games.filter(game => {
-                return !game.active;
-            })
-        )
+        const activeGames = this.games.map(game => {
+            return this.normalizeGame(game);
+        });
+        return activeGames.filter(game => {
+            return !game.active;
+        });
     }
 
-    normalizeGames(games) {
-        return games.map(game => {
-            return {
-                _id: game._id,
-                name: game.name,
-                players: game.players.map(player => {
-                    return {
-                        _sid: player.sid
-                    }
-                }),
-                host: {
-                    sid: game.host.sid
+    static normalizeGame(game) {
+        return {
+            _id: game._id,
+            name: game.name,
+            players: game.players.map(player => {
+                return {
+                    sid: player.sid
                 }
-            };
-        })
+            }),
+            host: {
+                sid: game.host.sid
+            }
+        };
     }
 
     destroyGame(game) {
         this.games.splice(this.games.indexOf(game), 1);
+    }
+
+    getGameDetails(player, id) {
+        let game = this.findGame(id);
+        if (game) {
+            game = this.normalizeGame(game);
+        }
+        return game;
     }
 }
 

@@ -28,9 +28,13 @@ class GameSession extends events.EventEmitter {
 
     initDisconnectPlayer(player) {
         player.inGame = false;
-        player.disconnectTimeout = setTimeout(() => {
+        if (this.active) {
+            player.disconnectTimeout = setTimeout(() => {
+                this.disconnectPlayer(player);
+            }, this.disconnectTimeout);
+        } else {
             this.disconnectPlayer(player);
-        }, this.disconnectTimeout);
+        }
     }
 
     disconnectPlayer(player) {

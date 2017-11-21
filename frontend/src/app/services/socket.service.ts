@@ -44,4 +44,14 @@ export class SocketService {
     public removeListener(event: string) {
         this._socket.off(event);
     }
+
+    public sendAsync(event: string, message = '') {
+        return new Promise((resolve => {
+            this.send(event, message);
+            this.addListener(event + ':success', data => {
+                this.removeListener(event + ':success');
+                resolve(data);
+            });
+        }));
+    }
 }

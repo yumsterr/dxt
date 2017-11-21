@@ -34,4 +34,8 @@ export class GameService {
     getGames() {
         this.socketService.send('getGamesList');
     }
+
+    async getGame(id) {
+        return await this.socketService.sendAsync('getGameDetails', id);
+    }
 }

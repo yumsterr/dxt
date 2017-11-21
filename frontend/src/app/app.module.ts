@@ -26,6 +26,7 @@ import {FindGamePageComponent} from './components/find-game-page/find-game-page.
 import {GameListDetailComponent} from './components/games-list/game-detail/game-detail.component';
 import { CreateGameDialogComponent } from './components/find-game-page/create-game-dialog/create-game-dialog.component';
 import { QuantityStringPipe } from './pipes/quantity-string.pipe';
+import { GameLobbyComponent } from './components/game-lobby/game-lobby.component';
 
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -43,7 +44,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
         FindGamePageComponent,
         GameListDetailComponent,
         CreateGameDialogComponent,
-        QuantityStringPipe
+        QuantityStringPipe,
+        GameLobbyComponent
     ],
     imports: [
         BrowserModule,

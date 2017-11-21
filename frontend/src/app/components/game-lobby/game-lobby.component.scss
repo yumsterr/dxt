@@ -1,0 +1,73 @@
+@import '../../../globalStyles/colors';
+@import '../../../globalStyles/sizes';
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+    width: 100%;
+
+    .game-heading {
+        padding: 10px;
+        font-size: 24px;
+        width: 100%;
+        text-align: center;
+        height: $heading-height;
+    }
+
+    .players {
+        width: 100%;
+        padding: 10px;
+        height: calc(90% - #{$heading-height});
+        border-bottom: 1px solid grey;
+
+        .players-heading {
+            font-size: 20px;
+            padding: 10px 0;
+            height: 50px;
+        }
+
+        .players-list_wrap {
+            height: calc(100% - #{$heading-height});
+
+            .player {
+                display: flex;
+                padding: 10px 0;
+
+                .player-about {
+                    width: 90%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    position: relative;
+                }
+                .player-about.host-icon {
+                    padding-right: 25px;
+
+                    .player-name:before {
+                        content: '123';
+                        position: absolute;
+                        right: 0;
+                        color: red;
+                    }
+                }
+                .controls {
+                    width: 10%;
+                }
+            }
+        }
+    }
+
+    .controls {
+        height: 10%;
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+
+        .button {
+            border: 1px solid grey;
+            padding: 10px 30px;
+        }
+    }
+}

@@ -1,17 +1,9 @@
-<div class="game">
+<div class="game" [routerLink]="parentUrl + game._id">
     <div class="game-about">
         <div class="game-name">{{ game.name }}</div>
         <div class="game-about-additional">
             <div class="game-host-name">Game creator: Hosqqqqqqqqqqqame</div>
             <div class="game-players-count">{{ game.players.length }} {{ 'player' | quantityString:game.players.length }}</div>
-        </div>
-    </div>
-    <div class="game-controls">
-        <div class="join-game">
-            <button mat-button class="join-game-button">Join</button>
-        </div>
-        <div class="leave-game" hidden>
-            <button mat-button class="leave-game-button">Leave</button>
         </div>
     </div>
 </div>
